@@ -1,13 +1,21 @@
 #!/usr/bin/env python
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 
 from mcache import *
 import sys
 
-s2t = mcache('s2t.db')
-t2s = mcache('t2s.db')
-s2tp = mcache('s2t_p.db')
-t2sp = mcache('t2s_p.db')
+def dbpath():
+    import os.path, sys
+    if __name__ == '__main__':
+        filename = sys.argv[0]
+    else:
+        filename = __file__
+    return os.path.abspath(os.path.dirname(filename))
+
+s2t = mcache(dbpath()+'/s2t.db')
+t2s = mcache(dbpath()+'/t2s.db')
+s2tp = mcache(dbpath()+'/s2t_p.db')
+t2sp = mcache(dbpath()+'/t2s_p.db')
 
 f = file(sys.argv[1])
 lines = f.readlines()
